@@ -1,1 +1,42 @@
-
+<!doctype html>
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+	<style type="text/css">
+		div {
+			border: 1px solid gray; padding: 5px; margin-bottom: 5px;
+		}
+		a:link { text-decoration: none; color: black; }
+		a:active { text-decoration: none; color: green; }
+		a:hover { text-decoration: none; color: black; font-weight: bold; }
+		a:visited { text-decoration: none; color: black; }
+	</style>
+</head>
+<body>
+	<div>
+		<img src="/images/linux.png"/> 
+		<img src="/images/Penguin.png"/> 
+		<img src="/images/kimc.png"/> 
+	</div>
+	
+	<div>
+		<b>서버 시간 : <span th:text="${today}"></span></b> <br />
+		<b>DB 시간 : <span th:text="${sysdate}"></span></b> <br />
+	</div>
+	
+	<div>
+		<th:block th:if="${session.user != NULL}">
+			회원 정보가 나와야 한다.
+			[<a th:href="@{/logout}">Logout</a>]
+		</th:block>
+		<th:block th:if="${session.user == NULL}">
+			로그인 화면이 나와야 한다.
+			[<a th:href="@{/login}">Login</a>]
+		</th:block>
+	</div>
+	
+</body>
+</html>
